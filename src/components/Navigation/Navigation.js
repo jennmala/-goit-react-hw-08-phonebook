@@ -13,7 +13,7 @@ import { getIsLoggedIn, getUserName, getToken, logout } from 'redux/auth';
 export const Navigation = () => {
   const isLoggedIn = useSelector(getIsLoggedIn);
   const userName = useSelector(getUserName);
-  const token = useSelector(state => state.auth.token);
+  const token = useSelector(getToken);
   const dispatch = useDispatch();
 
   return (
