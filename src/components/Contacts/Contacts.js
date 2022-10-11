@@ -1,10 +1,18 @@
 import { useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
+import { getIsLoggedIn } from 'redux/auth';
 import { getFilter } from 'redux/filter/filterSlice';
 import { useGetContactsQuery } from 'redux/contacts/contactsApi';
 import { ContactsItem } from 'components/ContactsItem/ContactsItem';
+import { useEffect } from 'react';
 
 export const Contacts = () => {
+  const isLoggedIn = useSelector(getIsLoggedIn);
+  const filter = useSelector(getFilter);
+
+  const navigate = useNavigate();
+
   const {
     data: contacts,
     error,
@@ -16,12 +24,13 @@ export const Contacts = () => {
     refetchOnFocus: true,
   });
 
-  const filter = useSelector(getFilter);
+  useEffect(() => {
+    if (!isLoggedIn) navigate('/');
+  });
 
   const getFilteredContacts = () => {
-    if (!filter) {
-      return contacts;
-    }
+    if (!contacts) return [];
+    if (!filter) return contacts;
     const normalizedFilter = filter.toLowerCase();
     return contacts.filter(contact =>
       contact.name.toLowerCase().includes(normalizedFilter)
@@ -37,8 +46,8 @@ export const Contacts = () => {
 
       {visibleContacts?.length && !isFetching && !isError ? (
         <ul>
-          {visibleContacts.map(({ id, name, phone }) => (
-            <ContactsItem key={id} id={id} name={name} phone={phone} />
+          {visibleContacts.map(({ id, name, number }) => (
+            <ContactsItem key={id} id={id} name={name} number={number} />
           ))}
         </ul>
       ) : (

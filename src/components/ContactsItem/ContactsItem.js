@@ -2,7 +2,7 @@ import toast from 'react-hot-toast';
 import { Item, Name, Number, DeleteBtn } from './ContactsItem.styled';
 import { useDeleteContactMutation } from 'redux/contacts/contactsApi';
 
-export const ContactsItem = ({ id, name, phone }) => {
+export const ContactsItem = ({ id, name, number }) => {
   const [deleteContact, { isLoading: isDeleting }] = useDeleteContactMutation();
 
   const delContact = () => {
@@ -12,7 +12,7 @@ export const ContactsItem = ({ id, name, phone }) => {
   return (
     <Item>
       <Name>
-        {name}: <Number>{phone}</Number>
+        {name}: <Number>{number}</Number>
       </Name>
 
       <DeleteBtn type="button" onClick={delContact} disabled={isDeleting}>

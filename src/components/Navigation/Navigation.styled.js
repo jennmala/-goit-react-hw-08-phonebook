@@ -29,10 +29,10 @@ export const Link = styled(NavLink)`
 export const LogoutBtn = styled.button`
   width: 100px;
   padding: 5px;
-  border: none;
+  border: 1px solid gray;
   border-radius: 20px;
   background-color: #ffffff;
-  margin-left: auto;
+
   color: #917171;
 
   :hover {
@@ -41,5 +41,23 @@ export const LogoutBtn = styled.button`
 `;
 
 export const AuthNav = styled.div`
-  margin-left: 400px;
+  margin-left: auto;
+`;
+
+export const UserNav = styled.div`
+  display: flex;
+  margin-left: auto;
+`;
+
+export const HelloField = styled.div`
+  display: flex;
+  margin-right: 25px;
+  align-items: center;
+  color: #917171;
+`;
+
+export const Name = styled.span`
+  margin-left: 5px;
+  font-weight: 700;
+  color: tomato;
 `;

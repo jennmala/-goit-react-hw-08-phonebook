@@ -26,5 +26,6 @@ export const DeleteBtn = styled.button`
 
   :disabled {
     opacity: 0.9;
+    color: #ffffff;
   }
 `;

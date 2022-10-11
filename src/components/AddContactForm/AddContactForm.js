@@ -12,7 +12,7 @@ export const AddContactForm = () => {
   const [createContact, { isLoading }] = useCreateContactMutation();
 
   const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
+  const [number, setNumber] = useState('');
 
   const onInputChange = e => {
     const { name, value } = e.currentTarget;
@@ -21,8 +21,8 @@ export const AddContactForm = () => {
       case 'name':
         setName(value);
         break;
-      case 'phone':
-        setPhone(value);
+      case 'number':
+        setNumber(value);
         break;
       default:
         return;
@@ -39,14 +39,14 @@ export const AddContactForm = () => {
       alert(name + ' is already in contacts.');
       return;
     }
-    createContact({ name, phone });
+    createContact({ name, number });
     toast.success('Contact created successfully');
     reset();
   };
 
   const reset = () => {
     setName('');
-    setPhone('');
+    setNumber('');
   };
 
   return (
@@ -70,11 +70,11 @@ export const AddContactForm = () => {
           Number
           <Input
             type="tel"
-            name="phone"
+            name="number"
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             required
-            value={phone}
+            value={number}
             onChange={onInputChange}
           />
         </FormLabel>

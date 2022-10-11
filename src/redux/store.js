@@ -19,11 +19,11 @@ import { authSlice } from './auth/authSlice';
 const authPersistConfig = {
   key: 'auth',
   storage,
-  whitelist: ['token'],
+  whitelist: ['token', 'user', 'isLoggedIn'],
 };
 export const store = configureStore({
   reducer: {
-    auth: persistReducer(authPersistConfig, authSlice.reducer),
+    [authSlice.name]: persistReducer(authPersistConfig, authSlice.reducer),
     [contactsApi.reducerPath]: contactsApi.reducer,
     [filterSlice.name]: filterSlice.reducer,
   },

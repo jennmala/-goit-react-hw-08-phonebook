@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import toast from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { FormWrap, FormLabel, Input, RegLogBtn } from './RegisterPage.styled';
 import { register } from 'redux/auth/auth-operations';
 
@@ -9,6 +9,7 @@ export const RegisterPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const onInputChange = e => {
     const { name, value } = e.currentTarget;
@@ -30,10 +31,9 @@ export const RegisterPage = () => {
 
   const onFormSumit = e => {
     e.preventDefault();
-
     dispatch(register({ name, email, password }));
-    toast.success('Registration successfully');
     reset();
+    navigate('/');
   };
 
   const reset = () => {
